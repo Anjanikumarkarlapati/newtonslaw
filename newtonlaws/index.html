@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Newton's Laws Playground</title>
+    <link rel="stylesheet" href="style.css"> 
+</head>
+<body>
+
+    <header>
+        <h1>🚀 Newton's Laws Playground</h1>
+        <p>Physics is the rulebook for how the universe moves!</p>
+        <nav>
+            <button class="tab-btn active" onclick="openTab('law1')">1st Law: Inertia</button>
+            <button class="tab-btn" onclick="openTab('law2')">2nd Law: F=MA</button>
+            <button class="tab-btn" onclick="openTab('law3')">3rd Law: Action/Reaction</button>
+        </nav>
+    </header>
+
+    <main>
+        <div id="law1" class="tab-content active">
+            <h2>1st Law: The Law of Laziness (Inertia) 😴</h2>
+            
+            <div class="info-box">
+                <p><strong>What is it?</strong> Objects are "lazy." If an object is sitting still, it wants to stay sitting still. If it is moving, it wants to keep moving in a straight line forever!</p>
+                <p><strong>So why do things stop?</strong> Because of invisible forces like <strong>Friction</strong> (rubbing against the ground) and <strong>Air Resistance</strong> (pushing through the air). </p>
+                <p class="brain-bite">🧠 <strong>Brain Bite:</strong> When you ride in a car and it suddenly stops, your body jerks forward. That's your body's inertia wanting to keep moving forward at the speed the car was just going!</p>
+            </div>
+            
+            <div class="interactive-panel">
+                <h3>Try it out: The Skateboard Push</h3>
+                <p>Change the ground surface to see how friction affects the skateboard's inertia!</p>
+                
+                <div class="controls">
+                    <label><strong>Ground Surface:</strong></label>
+                    <select id="l1-friction" onchange="updateLaw1()">
+                        <option value="ice">Smooth Ice (Very Low Friction)</option>
+                        <option value="wood" selected>Wood Floor (Medium Friction)</option>
+                        <option value="sand">Thick Sand (High Friction)</option>
+                    </select>
+                    <button class="action-btn" onclick="pushSkateboard()">Push Skateboard!</button>
+                    <button class="reset-btn" onclick="resetLaw1()">Put it back</button>
+                </div>
+
+                <div class="simulation-area" id="l1-track">
+                    <div class="object" id="l1-skater">🛹</div>
+                </div>
+                <h4 id="l1-result">Ready to push!</h4>
+            </div>
+        </div>
+
+        <div id="law2" class="tab-content">
+            <h2>2nd Law: Force = Mass x Acceleration 💪</h2>
+            
+            <div class="info-box">
+                <p><strong>What is it?</strong> This law is a math equation! It means the heavier something is (Mass), the harder you have to push it (Force) to make it speed up (Acceleration).</p>
+                <p><strong>The Golden Rule:</strong> Big heavy things are hard to move. Small light things are easy to move!</p>
+                <p class="brain-bite">🧠 <strong>Brain Bite:</strong> Imagine kicking a beach ball as hard as you can. It flies super fast! Now imagine kicking a bowling ball with that exact same force. Ouch! It barely moves because it has much more mass.</p>
+            </div>
+            
+            <div class="interactive-panel">
+                <h3>Try it out: The Giant Slingshot</h3>
+                <p>Choose your ammo and how far to pull back the rubber band.</p>
+                
+                <div class="controls">
+                    <label><strong>Ammo (Mass):</strong>
+                        <select id="l2-mass">
+                            <option value="1">Feather 🪶 (Very Light)</option>
+                            <option value="5" selected>Baseball ⚾ (Medium)</option>
+                            <option value="20">Anvil 🧲 (Super Heavy!)</option>
+                        </select>
+                    </label>
+                    <label><strong>Slingshot Pull (Force):</strong> 
+                        <input type="range" id="l2-force" min="1" max="20" value="10">
+                    </label>
+                    <button class="action-btn" onclick="fireSlingshot()">🔥 FIRE!</button>
+                    <button class="reset-btn" onclick="resetLaw2()">Reload</button>
+                </div>
+
+                <div class="simulation-area" style="background: #E0F2FE;">
+                    <div id="slingshot-base">🏹</div>
+                    <div class="object" id="l2-ammo">⚾</div>
+                </div>
+                <h4 id="l2-result">Waiting to fire...</h4>
+            </div>
+        </div>
+
+        <div id="law3" class="tab-content">
+            <h2>3rd Law: Action & Reaction 💥</h2>
+            
+            <div class="info-box">
+                <p><strong>What is it?</strong> Forces always come in pairs! You cannot touch something without it touching you back. For every action, there is an equal and opposite reaction.</p>
+                <p class="brain-bite">🧠 <strong>Brain Bite:</strong> How do birds fly? Their wings push the air DOWN (Action). Because of the 3rd law, the air pushes the bird UP (Reaction)! Rockets work the same way in space by pushing fire out the back.</p>
+            </div>
+            
+            <div class="interactive-panel">
+                <h3>Try it out: Astronaut Throw</h3>
+                <p>In deep space, there is no gravity holding you to the floor. See what happens when the astronaut throws a heavy moon rock.</p>
+                
+                <div class="controls">
+                    <button class="action-btn" onclick="throwRock()">Throw the Rock Right!</button>
+                    <button class="reset-btn" onclick="resetLaw3()">Catch the Rock</button>
+                </div>
+
+                <div class="simulation-area" style="background: #0F172A; color: white;">
+                    <div class="object" id="l3-astro">👨‍🚀</div>
+                    <div class="object" id="l3-rock" style="opacity: 0;">🪨</div>
+                </div>
+                
+                <div class="reaction-boxes">
+                    <div class="reaction-box" id="action-text">
+                        <h4>➡️ ACTION</h4>
+                        <p>Astronaut pushes the rock to the right.</p>
+                    </div>
+                    <div class="reaction-box" id="reaction-text">
+                        <h4>⬅️ REACTION</h4>
+                        <p>The rock pushes the astronaut to the left!</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script src="script.js"></script> 
+</body>
+</html>
